@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gimme5 Design System — Colour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand-primary:          #F55A27;
+      --brand-primary-hover:    #E04B1C;
+      --brand-primary-pressed:  #C43F17;
+      --brand-primary-subtle:   #FFF0EB;
+      --brand-primary-disabled: #efb19d;
+      --brand-dark:             #33110A;
+      --brand-dark-hover:       #4A1A0F;
+      --brand-dark-subtle:      #FFE4DB;
+      --content-primary:        #000000;
+      --content-secondary:      #3a3a3a;
+      --content-tertiary:       #5c5c5c;
+      --content-disabled:       #b0b0b0;
+      --content-inverse:        #ffffff;
+      --content-link:           #F55A27;
+      --content-on-brand:       #000000;
+      --bg-page:                #ebebeb;
+      --bg-surface:             #ffffff;
+      --bg-subtle:              #f5f5f5;
+      --bg-overlay:             rgba(0,0,0,.40);
+      --border-default:         #e8e8e8;
+      --border-strong:          #d0d0d0;
+      --border-brand:           #F55A27;
+      --border-focus:           #000000;
+      --positive-bg:            #f0faf4;
+      --positive-text:          #15803d;
+      --positive-icon:          #22c55e;
+      --warning-bg:             #fff8e6;
+      --warning-text:           #92600a;
+      --warning-icon:           #f59e0b;
+      --negative-bg:            #fff1f0;
+      --negative-text:          #b91c1c;
+      --negative-icon:          #ef4444;
+      --info-bg:                #eff6ff;
+      --info-text:              #1d4ed8;
+      --info-icon:              #3b82f6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #000000;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────────── */
+    .layout { display: flex; min-height: 100vh; }
+
+    /* ── SIDEBAR ─────────────────────────────────────────── */
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid #f0f0f0;
+      padding: 40px 0 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 24px 32px;
+      border-bottom: 1px solid #f0f0f0;
+      margin-bottom: 24px;
+    }
+    .sidebar-logo-mark {
+      width: 32px; height: 32px;
+      background: #33110A;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Archivo', sans-serif;
+      font-size: 10px; font-weight: 900;
+      color: #F55A27;
+      flex-shrink: 0;
+    }
+    .sidebar-logo-text {
+      font-size: 13px; font-weight: 700; color: #000000; line-height: 1.2;
+    }
+    .sidebar-logo-sub {
+      font-size: 11px; font-weight: 400; color: #5c5c5c;
+    }
+    .sidebar-section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #b0b0b0;
+      padding: 0 24px 8px;
+    }
+    .sidebar-nav { list-style: none; padding: 0 12px; }
+    .sidebar-nav li a {
+      display: block; padding: 7px 12px;
+      font-size: 13px; font-weight: 500; color: #5c5c5c;
+      text-decoration: none; border-radius: 8px;
+      transition: background 0.1s, color 0.1s;
+    }
+    .sidebar-nav li a:hover { background: #f5f5f5; color: #000000; }
+    .sidebar-nav li a.active { background: #FFF0EB; color: #F55A27; font-weight: 600; }
+    .sidebar-nav li + li { margin-top: 1px; }
+
+    /* ── MAIN ────────────────────────────────────────────── */
+    .main { flex: 1; min-width: 0; }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      padding: 64px 64px 56px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .breadcrumb {
+      font-size: 12px; color: #b0b0b0;
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .breadcrumb span { color: #5c5c5c; }
+    .hero h1 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 52px; font-weight: 900; line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #000000;
+      margin-bottom: 16px;
+    }
+    .hero-desc {
+      font-size: 17px; color: #5c5c5c; line-height: 1.65;
+      max-width: 560px;
+    }
+    .hero-pills {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .hero-pill {
+      font-size: 12px; font-weight: 600;
+      padding: 5px 12px; border-radius: 100px;
+      border: 1px solid #e8e8e8; color: #5c5c5c;
+      background: #fafafa;
+    }
+    .hero-pill.orange { background: #FFF0EB; border-color: #F55A27; color: #F55A27; }
+    .hero-pill.dark   { background: #FFE4DB; border-color: #33110A; color: #33110A; }
+
+    /* ── SECTION ─────────────────────────────────────────── */
+    .section {
+      padding: 56px 64px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-header { margin-bottom: 32px; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: #b0b0b0; margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 26px; font-weight: 900;
+      letter-spacing: -0.01em; color: #000000;
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      font-size: 14px; color: #5c5c5c; line-height: 1.65;
+      max-width: 600px;
+    }
+
+    /* ── SWATCH GRID ─────────────────────────────────────── */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: 1px solid #f0f0f0;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .swatch-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .swatch-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .swatch-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .sw {
+      display: flex; flex-direction: column;
+      border-right: 1px solid #f0f0f0;
+      cursor: default;
+      transition: transform 0.15s;
+    }
+    .sw:last-child { border-right: none; }
+    .sw:hover { transform: translateY(-2px); z-index: 1; }
+
+    .sw-color {
+      height: 100px;
+      position: relative;
+    }
+    .sw-color.checkered {
+      background-image:
+        linear-gradient(45deg,#e0e0e0 25%,transparent 25%),
+        linear-gradient(-45deg,#e0e0e0 25%,transparent 25%),
+        linear-gradient(45deg,transparent 75%,#e0e0e0 75%),
+        linear-gradient(-45deg,transparent 75%,#e0e0e0 75%);
+      background-size: 14px 14px;
+      background-position: 0 0,0 7px,7px -7px,-7px 0px;
+    }
+    .sw-color.checkered::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--overlay-color);
+    }
+    .sw-body { padding: 14px 16px 16px; border-top: 1px solid #f0f0f0; }
+    .sw-name { font-size: 13px; font-weight: 600; color: #000000; margin-bottom: 3px; }
+    .sw-hex  { font-size: 12px; font-family: monospace; color: #5c5c5c; margin-bottom: 4px; }
+    .sw-token { font-size: 11px; font-family: monospace; color: #b0b0b0; line-height: 1.4; }
+
+    /* ── WIDE SWATCH (for Brand Primary) ─────────────────── */
+    .swatch-hero {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid #f0f0f0;
+      margin-bottom: 16px;
+    }
+    .swatch-hero-color {
+      height: 160px;
+    }
+    .swatch-hero-body {
+      padding: 20px 24px;
+      border-top: 1px solid #f0f0f0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .swatch-hero-left .name { font-size: 18px; font-weight: 700; color: #000; margin-bottom: 2px; }
+    .swatch-hero-left .hex  { font-size: 14px; font-family: monospace; color: #5c5c5c; }
+    .copy-hex {
+      font-size: 12px; font-weight: 600;
+      padding: 6px 14px; border-radius: 100px;
+      border: 1px solid #e8e8e8;
+      background: #fafafa; color: #5c5c5c;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: background 0.1s, border-color 0.1s, color 0.1s;
+    }
+    .copy-hex:hover { background: #f0f0f0; border-color: #d0d0d0; color: #000; }
+    .copy-hex:focus-visible { outline: none; box-shadow: 0 0 0 1.5px #000, 0 0 0 3px rgba(0,0,0,0.12); border-radius: 100px; }
+
+    /* ── CONTRAST TABLE ──────────────────────────────────── */
+    .contrast-table {
+      width: 100%; border-collapse: collapse;
+      border: 1px solid #f0f0f0; border-radius: 12px; overflow: hidden;
+      font-size: 13px;
+    }
+    .contrast-table thead tr { background: #fafafa; }
+    .contrast-table th {
+      text-align: left; padding: 12px 16px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #b0b0b0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .contrast-table th:first-child { border-radius: 12px 0 0 0; }
+    .contrast-table th:last-child  { border-radius: 0 12px 0 0; }
+    .contrast-table td {
+      padding: 12px 16px; border-bottom: 1px solid #f8f8f8;
+      vertical-align: middle;
+    }
+    .contrast-table tr:last-child td { border-bottom: none; }
+    .contrast-table tr:hover td { background: #fafafa; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 700;
+      padding: 3px 8px; border-radius: 6px;
+    }
+    .badge.pass { background: #f0faf4; color: #15803d; }
+    .badge.fail { background: #fff1f0; color: #b91c1c; }
+    .badge.large { background: #fff8e6; color: #92600a; }
+    .preview-text {
+      display: inline-block; padding: 4px 10px;
+      border-radius: 6px; font-weight: 600; font-size: 13px;
+    }
+
+    /* ── PAIRINGS ────────────────────────────────────────── */
+    .pairing-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .pairing-card {
+      border: 1px solid #f0f0f0; border-radius: 14px; overflow: hidden;
+    }
+    .pairing-preview {
+      height: 80px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 600;
+    }
+    .pairing-footer {
+      padding: 12px 16px;
+      border-top: 1px solid #f0f0f0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .pairing-label { font-size: 12px; color: #5c5c5c; }
+    .pairing-label strong { display: block; font-size: 13px; font-weight: 600; color: #000; }
+
+    /* ── INTERACTIVE STATES ──────────────────────────────── */
+    .states-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    .state-card {
+      border: 1px solid #f0f0f0; border-radius: 14px; padding: 20px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .state-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: #b0b0b0;
+    }
+    .state-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 600;
+      padding: 12px 24px; border-radius: 100px;
+      border: none; cursor: pointer;
+      width: 100%;
+    }
+    .state-btn:focus-visible { outline: none; box-shadow: 0 0 0 1.5px #000, 0 0 0 3px rgba(0,0,0,0.12); }
+    .state-desc { font-size: 12px; color: #5c5c5c; line-height: 1.5; }
+    .state-tokens { display: flex; flex-direction: column; gap: 4px; }
+    .state-token-row { display: flex; align-items: center; gap: 8px; }
+    .state-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .state-token-name { font-size: 11px; font-family: monospace; color: #b0b0b0; }
+
+    /* ── SENTIMENT ───────────────────────────────────────── */
+    .sentiment-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    }
+    .sentiment-card {
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid #f0f0f0;
+    }
+    .sentiment-top {
+      padding: 20px 18px 16px;
+    }
+    .sentiment-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .sentiment-name { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .sentiment-example { font-size: 12px; line-height: 1.55; }
+    .sentiment-bottom {
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding: 12px 18px;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .sentiment-token { font-size: 10px; font-family: monospace; color: #b0b0b0; }
+
+    /* ── TEXT RAMP ───────────────────────────────────────── */
+    .text-ramp {
+      border: 1px solid #f0f0f0; border-radius: 14px; overflow: hidden;
+    }
+    .text-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid #f8f8f8;
+    }
+    .text-row:last-child { border-bottom: none; }
+    .text-row:hover { background: #fafafa; }
+    .text-sample { font-size: 15px; font-weight: 500; }
+    .text-meta { font-size: 11px; font-family: monospace; color: #b0b0b0; text-align: right; }
+
+    /* ── BORDER RAMP ─────────────────────────────────────── */
+    .border-ramp { display: flex; flex-direction: column; gap: 10px; }
+    .border-row {
+      border-radius: 12px; padding: 16px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: #fafafa;
+      font-size: 13px; color: #3a3a3a;
+    }
+    .border-tag { font-size: 11px; font-family: monospace; color: #b0b0b0; }
+
+    /* ── USAGE EXAMPLES ──────────────────────────────────── */
+    .usage-grid { display: flex; flex-direction: column; gap: 0; border: 1px solid #f0f0f0; border-radius: 14px; overflow: hidden; }
+    .usage-row {
+      display: flex; align-items: center; gap: 0;
+      border-bottom: 1px solid #f8f8f8;
+    }
+    .usage-row:last-child { border-bottom: none; }
+    .usage-row:hover { background: #fafafa; }
+    .usage-preview {
+      width: 240px; flex-shrink: 0;
+      padding: 20px 24px;
+      border-right: 1px solid #f8f8f8;
+    }
+    .usage-info { padding: 20px 24px; flex: 1; }
+    .usage-title { font-size: 13px; font-weight: 600; color: #000; margin-bottom: 4px; }
+    .usage-desc { font-size: 12px; color: #5c5c5c; line-height: 1.6; }
+    .usage-desc code {
+      font-family: monospace; font-size: 11px;
+      background: #f5f5f5; padding: 1px 5px; border-radius: 4px;
+      color: #F55A27;
+    }
+
+    /* ── TOKEN TABLE ─────────────────────────────────────── */
+    .token-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .token-table thead tr { background: #fafafa; }
+    .token-table th {
+      text-align: left; padding: 12px 16px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: #b0b0b0; border-bottom: 1px solid #f0f0f0;
+    }
+    .token-table td { padding: 11px 16px; border-bottom: 1px solid #f8f8f8; vertical-align: middle; }
+    .token-table tr:last-child td { border-bottom: none; }
+    .token-table tr:hover td { background: #fafafa; }
+    .token-name { font-family: monospace; font-size: 12px; color: #33110A; }
+    .token-val  { font-family: monospace; font-size: 12px; color: #5c5c5c; }
+    .cat-badge {
+      font-size: 11px; font-weight: 600;
+      padding: 3px 9px; border-radius: 6px;
+    }
+
+    /* Swatch dot in table */
+    .color-dot {
+      width: 22px; height: 22px; border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.08);
+      display: inline-block; vertical-align: middle;
+      position: relative; overflow: hidden;
+    }
+
+    /* ── DEMO COMPONENTS ─────────────────────────────────── */
+    .demo-cta {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 600;
+      padding: 13px 28px; border-radius: 100px;
+      border: none; cursor: pointer;
+      background: #F55A27; color: #000000;
+      display: inline-block;
+    }
+    .demo-toast {
+      background: #000000; color: #ffffff;
+      border-radius: 14px; padding: 14px 18px;
+      font-size: 14px; font-weight: 400;
+      display: inline-flex; align-items: center; gap: 10px;
+      width: 100%;
+    }
+    .demo-copy-row {
+      background: #ffffff; border-radius: 12px;
+      border: 1px solid #f0f0f0;
+      padding: 12px 14px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .demo-copy-row .mono { font-family: monospace; font-size: 13px; font-weight: 700; color: #F55A27; }
+    .demo-copy-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 600;
+      padding: 5px 12px; border-radius: 100px;
+      border: none; cursor: pointer;
+      background: #FFE4DB; color: #33110A;
+    }
+    .demo-input {
+      background: #f5f5f5; border-radius: 12px;
+      padding: 11px 14px;
+    }
+    .demo-input .label { font-size: 11px; color: #5c5c5c; margin-bottom: 2px; }
+    .demo-input .value { font-size: 15px; color: #000000; font-weight: 500; }
+    /* Focus Wise-style: double black line */
+    .demo-input.focused { border: 1.5px solid #000000; box-shadow: 0 0 0 1.5px #000000; }
+
+    /* ── FOCUS — Wise style: double black line via box-shadow ── */
+    :focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 1.5px #000000, 0 0 0 3px rgba(0,0,0,0.12);
+      border-radius: 6px;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .sidebar { display: none; }
+      .hero { padding: 48px 40px 44px; }
+      .section { padding: 44px 40px; }
+    }
+    @media (max-width: 720px) {
+      .hero { padding: 36px 24px 36px; }
+      .hero h1 { font-size: 36px; }
+      .section { padding: 36px 24px; }
+      .swatch-grid { grid-template-columns: repeat(2, 1fr); }
+      .states-grid { grid-template-columns: 1fr 1fr; }
+      .sentiment-grid { grid-template-columns: 1fr 1fr; }
+      .pairing-grid { grid-template-columns: 1fr; }
+      .usage-preview { width: 180px; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ── SIDEBAR ──────────────────────────────────────── -->
+  <aside class="sidebar" aria-label="Navigazione design system">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-mark" aria-hidden="true">G5</div>
+      <div>
+        <div class="sidebar-logo-text">Gimme5</div>
+        <div class="sidebar-logo-sub">Design System</div>
+      </div>
+    </div>
+    <div class="sidebar-section-label">Colour</div>
+    <ul class="sidebar-nav">
+      <li><a href="#brand">Brand</a></li>
+      <li><a href="#states">States</a></li>
+      <li><a href="#content">Content</a></li>
+      <li><a href="#backgrounds">Backgrounds</a></li>
+      <li><a href="#borders">Borders</a></li>
+      <li><a href="#sentiment">Sentiment</a></li>
+      <li><a href="#accessibility">Accessibility</a></li>
+      <li><a href="#pairings">Pairings</a></li>
+      <li><a href="#usage">Usage</a></li>
+      <li><a href="#tokens">Tokens</a></li>
+    </ul>
+    <div class="sidebar-section-label" style="margin-top:24px;">Foundations</div>
+    <ul class="sidebar-nav">
+      <li><a href="#typography">Typography</a></li>
+      <li><a href="#spacing">Spacing & Radius</a></li>
+      <li><a href="#iconography">Iconography</a></li>
+    </ul>
+    <div class="sidebar-section-label" style="margin-top:24px;">Components</div>
+    <ul class="sidebar-nav">
+      <li><a href="#">Buttons</a></li>
+      <li><a href="#">Inputs</a></li>
+      <li><a href="#">Cards</a></li>
+      <li><a href="#">Modals</a></li>
+    </ul>
+  </aside>
+
+  <!-- ── MAIN ─────────────────────────────────────────── -->
+  <main class="main">
+
+    <!-- HERO -->
+    <div class="hero">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        Foundations <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg> <span>Colour</span>
+      </nav>
+      <h1>Colour</h1>
+      <p class="hero-desc">La palette di Gimme5 è strutturata su token semantici. Ogni colore ha un ruolo specifico nell'interfaccia — dal brand primario ai feedback di sistema, dagli stati interattivi all'accessibilità.</p>
+      <div class="hero-pills" aria-label="Colori principali del brand">
+        <span class="hero-pill orange">#F55A27 Brand orange</span>
+        <span class="hero-pill dark">#33110A Brand dark</span>
+        <span class="hero-pill">WCAG AA compliant</span>
+        <span class="hero-pill">36 token</span>
+      </div>
+    </div>
+
+    <!-- ── BRAND PRIMARY ─────────────────────────────── -->
+    <section class="section" id="brand" aria-labelledby="brand-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Brand</div>
+        <h2 class="section-title" id="brand-title">Brand Primary</h2>
+        <p class="section-desc">Il colore principale dell'azione. Usato su CTA, selezioni attive, badge e accenti visivi. Il testo sopra l'arancione è sempre nero — non bianco.</p>
+      </div>
+
+      <div class="swatch-hero" aria-label="Colore brand primario: arancione #F55A27">
+        <div class="swatch-hero-color" style="background:#F55A27;"></div>
+        <div class="swatch-hero-body">
+          <div class="swatch-hero-left">
+            <div class="name">Brand Orange</div>
+            <div class="hex">#F55A27 — rgb(245, 90, 39)</div>
+          </div>
+          <button class="copy-hex" onclick="copy('#F55A27', this)" aria-label="Copia valore colore #F55A27">Copia hex</button>
+        </div>
+      </div>
+
+      <div class="swatch-grid cols-5" role="list" aria-label="Varianti colore brand primario">
+        <div class="sw" role="listitem">
+          <div class="sw-color" style="background:#F55A27;" aria-hidden="true"></div>
+          <div class="sw-body">
+            <div class="sw-name">Default</div>
+            <div class="sw-hex">#F55A27</div>
+            <div class="sw-token">--brand-primary</div>
+          </div>
+        </div>
+        <div class="sw" role="listitem">
+          <div class="sw-color" style="background:#E04B1C;" aria-hidden="true"></div>
+          <div class="sw-body">
+            <div class="sw-name">Hover</div>
+            <div class="sw-hex">#E04B1C</div>
+            <div class="sw-token">--brand-primary-hover</div>
+          </div>
+        </div>
+        <div class="sw" role="listitem">
+          <div class="sw-color" style="background:#C43F17;" aria-hidden="true"></div>
+          <div class="sw-body">
+            <div class="sw-name">Pressed</div>
+            <div class="sw-hex">#C43F17</div>
+            <div class="sw-token">--brand-primary-pressed</div>
+          </div>
+        </div>
+        <div class="sw" role="listitem">
+          <div class="sw-color" style="background:#FFF0EB;" aria-hidden="true"></div>
+          <div class="sw-body">
+            <div class="sw-name">Subtle</div>
+            <div class="sw-hex">#FFF0EB</div>
+            <div class="sw-token">--brand-primary-subtle</div>
+          </div>
+        </div>
+        <div class="sw" role="listitem">
+          <div class="sw-color" style="background:#efb19d;" aria-hidden="true"></div>
+          <div class="sw-body">
+            <div class="sw-name">Disabled</div>
+            <div class="sw-hex">#efb19d</div>
+            <div class="sw-token">--brand-primary-disabled</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;">
+        <div class="swatch-grid cols-3" role="list" aria-label="Varianti colore brand scuro">
+          <div class="sw" role="listitem">
+            <div class="sw-color" style="background:#33110A;" aria-hidden="true"></div>
+            <div class="sw-body">
+              <div class="sw-name">Brand Dark</div>
+              <div class="sw-hex">#33110A</div>
+              <div class="sw-token">--brand-dark</div>
+            </div>
+          </div>
+          <div class="sw" role="listitem">
+            <div class="sw-color" style="background:#4A1A0F;" aria-hidden="true"></div>
+            <div class="sw-body">
+              <div class="sw-name">Dark Hover</div>
+              <div class="sw-hex">#4A1A0F</div>
+              <div class="sw-token">--brand-dark-hover</div>
+            </div>
+          </div>
+          <div class="sw" role="listitem">
+            <div class="sw-color" style="background:#FFE4DB;" aria-hidden="true"></div>
+            <div class="sw-body">
+              <div class="sw-name">Dark Subtle</div>
+              <div class="sw-hex">#FFE4DB</div>
+              <div class="sw-token">--brand-dark-subtle</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── INTERACTIVE STATES ────────────────────────── -->
+    <section class="section" id="states" aria-labelledby="states-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Interactive</div>
+        <h2 class="section-title" id="states-title">States</h2>
+        <p class="section-desc">Quattro varianti di bottone definite in <code style="font-family:monospace;font-size:12px;background:#f5f5f5;padding:1px 5px;border-radius:4px;">index.css</code>: <code style="font-family:monospace;font-size:12px;background:#f5f5f5;padding:1px 5px;border-radius:4px;">.bp</code> primario, <code style="font-family:monospace;font-size:12px;background:#f5f5f5;padding:1px 5px;border-radius:4px;">.bt</code> scuro, <code style="font-family:monospace;font-size:12px;background:#f5f5f5;padding:1px 5px;border-radius:4px;">.bs</code> ghost testuale, <code style="font-family:monospace;font-size:12px;background:#f5f5f5;padding:1px 5px;border-radius:4px;">.bgh</code> ghost brand. Su mobile il feedback di press è opacity-based (<code style="font-family:monospace;font-size:12px;background:#f5f5f5;padding:1px 5px;border-radius:4px;">active:opacity-70</code>) — hover e pressed color-change sono pattern desktop.</p>
+      </div>
+      <div class="states-grid" role="list">
+
+        <div class="state-card" role="listitem">
+          <div class="state-label">Default</div>
+          <button class="state-btn" style="background:#F55A27;color:#000000;" aria-label="Bottone stato default">Continua</button>
+          <div class="state-tokens">
+            <div class="state-token-row">
+              <div class="state-dot" style="background:#F55A27;" aria-hidden="true"></div>
+              <span class="state-token-name">--brand-primary</span>
+            </div>
+            <div class="state-token-row">
+              <div class="state-dot" style="background:#000000;" aria-hidden="true"></div>
+              <span class="state-token-name">--content-primary (testo)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="state-card" role="listitem">
+          <div class="state-label">Hover</div>
+          <button class="state-btn" tabindex="-1" aria-hidden="true" style="background:#E04B1C;color:#000000;">Continua</button>
+          <div class="state-tokens">
+            <div class="state-token-row">
+              <div class="state-dot" style="background:#E04B1C;" aria-hidden="true"></div>
+              <span class="state-token-name">--brand-primary-hover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="state-card" role="listitem">
+          <div class="state-label">Pressed</div>
+          <button class="state-btn" tabindex="-1" aria-hidden="true" style="background:#C43F17;color:#000000;">Continua</button>
+          <div class="state-tokens">
+            <div class="state-token-row">
+              <div class="state-dot" style="background:#C43F17;" aria-hidden="true"></div>
+              <span class="state-token-name">--brand-primary-pressed</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="state-card" role="listitem">
+          <div class="state-label">Disabled</div>
+          <button class="state-btn" disabled style="background:#efb19d;color:#8d8d8d;" aria-label="Bottone disabilitato">Continua</button>
+          <div class="state-tokens">
+            <div class="state-token-row">
+              <div class="state-dot" style="background:#efb19d;" aria-hidden="true"></div>
+              <span class="state-token-name">--brand-primary-disabled</span>
+            </div>
+            <div class="state-token-row">
+              <div class="state-dot" style="background:#8d8d8d;" aria-hidden="true"></div>
+              <span class="state-token-name">--content-disabled (testo)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="state-card" role="listitem">
+          <div class="state-label">Outline</div>
+          <button class="state-btn" style="background:transparent;color:#33110A;border:1.5px solid #33110A;" aria-label="Bottone variante outline">Continua</button>
+          <div class="state-tokens">
+            <div class="state-token-row">
+              <div class="state-dot" style="background:#33110A;" aria-hidden="true"></div>
+              <span class="state-token-name">--brand-dark (bordo + testo)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="state-card" role="listitem">
+          <div class="state-label">Ghost brand <code style="font-family:monospace;font-size:10px;background:#f0f0f0;padding:1px 4px;border-radius:4px;font-weight:400;">.bgh</code></div>
+          <button class="state-btn" style="background:#FFE4DB;color:#33110A;" aria-label="Bottone variante ghost brand">Copia</button>
+          <div class="state-tokens">
+            <div class="state-token-row">
+              <div class="state-dot" style="background:#FFE4DB;" aria-hidden="true"></div>
+              <span class="state-token-name">--brand-dark-subtle (bg)</span>
+            </div>
+            <div class="state-token-row">
+              <div class="state-dot" style="background:#33110A;" aria-hidden="true"></div>
+              <span class="state-token-name">--brand-dark (testo)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── CONTENT / TEXT ────────────────────────────── -->
+    <section class="section" id="content" aria-labelledby="content-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Content</div>
+        <h2 class="section-title" id="content-title">Text</h2>
+        <p class="section-desc">La gerarchia tipografica in 5 livelli. Non usare colori arbitrari per il testo — ogni livello ha un ruolo preciso nella lettura.</p>
+      </div>
+      <div class="text-ramp" role="list" aria-label="Gerarchia colori testo">
+        <div class="text-row" role="listitem">
+          <span class="text-sample" style="color:#000000;">Titolo e testo principale</span>
+          <span class="text-meta">--content-primary · #000000</span>
+        </div>
+        <div class="text-row" role="listitem">
+          <span class="text-sample" style="color:#3a3a3a;">Label e sottotitoli</span>
+          <span class="text-meta">--content-secondary · #3a3a3a</span>
+        </div>
+        <div class="text-row" role="listitem">
+          <span class="text-sample" style="color:#5c5c5c;">Testo di supporto e descrizioni</span>
+          <span class="text-meta">--content-tertiary · #5c5c5c</span>
+        </div>
+        <div class="text-row" role="listitem">
+          <span class="text-sample" style="color:#b0b0b0;">Placeholder e stato disabilitato</span>
+          <span class="text-meta">--content-disabled · #b0b0b0</span>
+        </div>
+        <div class="text-row" role="listitem" style="background:#33110A;">
+          <span class="text-sample" style="color:#ffffff;">Testo inverso su sfondo scuro</span>
+          <span class="text-meta" style="color:rgba(255,255,255,0.4);">--content-inverse · #ffffff</span>
+        </div>
+        <div class="text-row" role="listitem">
+          <span class="text-sample" style="color:#F55A27;">Link e testo enfatico</span>
+          <span class="text-meta">--content-link · #F55A27</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BACKGROUND ────────────────────────────────── -->
+    <section class="section" id="backgrounds" aria-labelledby="bg-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Background</div>
+        <h2 class="section-title" id="bg-title">Surfaces</h2>
+        <p class="section-desc">Quattro livelli di profondità. La pagina usa il grigio chiaro, le card sono bianche, input e capsule usano il grigio sottile. L'overlay scurisce il contenuto sotto sheet e modal.</p>
+      </div>
+      <div class="swatch-grid cols-4" role="list" aria-label="Colori di sfondo">
+        <div class="sw" role="listitem">
+          <div class="sw-color" style="background:#ebebeb;border-bottom:1px solid #e0e0e0;" aria-hidden="true"></div>
+          <div class="sw-body">
+            <div class="sw-name">Page</div>
+            <div class="sw-hex">#ebebeb</div>
+            <div class="sw-token">--bg-page</div>
+          </div>
+        </div>
+        <div class="sw" role="listitem">
+          <div class="sw-color" style="background:#ffffff;border-bottom:1px solid #e8e8e8;" aria-hidden="true"></div>
+          <div class="sw-body">
+            <div class="sw-name">Surface</div>
+            <div class="sw-hex">#ffffff</div>
+            <div class="sw-token">--bg-surface</div>
+          </div>
+        </div>
+        <div class="sw" role="listitem">
+          <div class="sw-color" style="background:#f5f5f5;border-bottom:1px solid #e8e8e8;" aria-hidden="true"></div>
+          <div class="sw-body">
+            <div class="sw-name">Subtle / Input</div>
+            <div class="sw-hex">#f5f5f5</div>
+            <div class="sw-token">--bg-subtle</div>
+          </div>
+        </div>
+        <div class="sw" role="listitem">
+          <div class="sw-color checkered" style="--overlay-color: rgba(0,0,0,0.40);" aria-hidden="true"></div>
+          <div class="sw-body">
+            <div class="sw-name">Overlay</div>
+            <div class="sw-hex">rgba(0,0,0,.40)</div>
+            <div class="sw-token">--bg-overlay</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BORDER ────────────────────────────────────── -->
+    <section class="section" id="borders" aria-labelledby="border-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Border</div>
+        <h2 class="section-title" id="border-title">Borders & Focus</h2>
+        <p class="section-desc">Tre livelli di bordo + uno stile focus ispirato a Wise: doppio bordo nero via <code style="font-family:monospace;font-size:12px;background:#f5f5f5;padding:1px 5px;border-radius:4px;">box-shadow 0 0 0 1.5px #000</code>. Il global reset rimuove l'<code style="font-family:monospace;font-size:12px;background:#f5f5f5;padding:1px 5px;border-radius:4px;">outline</code> nativo — il focus visivo vive nel box-shadow.</p>
+      </div>
+      <div class="border-ramp" role="list">
+        <div class="border-row" style="border:1px solid #e8e8e8;" role="listitem">
+          <span>Default — separatori card, icon-box, righe lista</span>
+          <span class="border-tag">--border-default · #e8e8e8</span>
+        </div>
+        <div class="border-row" style="border:1.5px solid #d0d0d0;" role="listitem">
+          <span>Strong — input default, chip, checkbox non selezionato</span>
+          <span class="border-tag">--border-strong · #d0d0d0</span>
+        </div>
+        <div class="border-row" style="border:1.5px solid #F55A27;" role="listitem">
+          <span>Brand — checkbox checked, dcheckbox selezionato</span>
+          <span class="border-tag">--border-brand · #F55A27</span>
+        </div>
+        <div class="border-row" style="border:1.5px solid #000000;box-shadow:0 0 0 1.5px #000000;" role="listitem">
+          <span>Focus — stile Wise: doppio bordo nero su input attivo/filled</span>
+          <span class="border-tag">--border-focus · #000000 + box-shadow 1.5px</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SENTIMENT ─────────────────────────────────── -->
+    <section class="section" id="sentiment" aria-labelledby="sentiment-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Feedback</div>
+        <h2 class="section-title" id="sentiment-title">Sentiment</h2>
+        <p class="section-desc">Quattro stati di feedback del sistema. Ogni sentiment ha sfondo, testo e icona dedicati — mai mescolati tra categorie diverse.</p>
+      </div>
+      <div class="sentiment-grid" role="list">
+
+        <div class="sentiment-card" role="listitem">
+          <div class="sentiment-top" style="background:#f0faf4;">
+            <div class="sentiment-icon" style="background:#22c55e;" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="sentiment-name" style="color:#15803d;">Successo</div>
+            <div class="sentiment-example" style="color:#15803d;">Piano attivato correttamente.</div>
+          </div>
+          <div class="sentiment-bottom">
+            <div class="sentiment-token">--positive-bg · #f0faf4</div>
+            <div class="sentiment-token">--positive-text · #15803d</div>
+            <div class="sentiment-token">--positive-icon · #22c55e</div>
+          </div>
+        </div>
+
+        <div class="sentiment-card" role="listitem">
+          <div class="sentiment-top" style="background:#fff8e6;">
+            <div class="sentiment-icon" style="background:#f59e0b;" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div class="sentiment-name" style="color:#92600a;">Attenzione</div>
+            <div class="sentiment-example" style="color:#92600a;">Bonifico non ancora arrivato.</div>
+          </div>
+          <div class="sentiment-bottom">
+            <div class="sentiment-token">--warning-bg · #fff8e6</div>
+            <div class="sentiment-token">--warning-text · #92600a</div>
+            <div class="sentiment-token">--warning-icon · #f59e0b</div>
+          </div>
+        </div>
+
+        <div class="sentiment-card" role="listitem">
+          <div class="sentiment-top" style="background:#fff1f0;">
+            <div class="sentiment-icon" style="background:#ef4444;" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div class="sentiment-name" style="color:#b91c1c;">Errore</div>
+            <div class="sentiment-example" style="color:#b91c1c;">Documento non leggibile.</div>
+          </div>
+          <div class="sentiment-bottom">
+            <div class="sentiment-token">--negative-bg · #fff1f0</div>
+            <div class="sentiment-token">--negative-text · #b91c1c</div>
+            <div class="sentiment-token">--negative-icon · #ef4444</div>
+          </div>
+        </div>
+
+        <div class="sentiment-card" role="listitem">
+          <div class="sentiment-top" style="background:#eff6ff;">
+            <div class="sentiment-icon" style="background:#3b82f6;" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div class="sentiment-name" style="color:#1d4ed8;">Info</div>
+            <div class="sentiment-example" style="color:#1d4ed8;">Accredito in 1–3 giorni.</div>
+          </div>
+          <div class="sentiment-bottom">
+            <div class="sentiment-token">--info-bg · #eff6ff</div>
+            <div class="sentiment-token">--info-text · #1d4ed8</div>
+            <div class="sentiment-token">--info-icon · #3b82f6</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── ACCESSIBILITY ─────────────────────────────── -->
+    <section class="section" id="accessibility" aria-labelledby="a11y-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Accessibility</div>
+        <h2 class="section-title" id="a11y-title">Contrast</h2>
+        <p class="section-desc">Rapporti di contrasto per le combinazioni testo/sfondo più usate nel prototipo. WCAG AA richiede 4.5:1 per testo normale, 3:1 per testo grande (18px+ o 14px+ bold).</p>
+      </div>
+      <table class="contrast-table" aria-label="Tabella contrasto WCAG">
+        <thead>
+          <tr>
+            <th scope="col">Combinazione</th>
+            <th scope="col">Anteprima</th>
+            <th scope="col">Rapporto</th>
+            <th scope="col">AA normale</th>
+            <th scope="col">AA grande</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="token-name">#000000</span> su <span class="token-name">#F55A27</span></td>
+            <td><span class="preview-text" style="background:#F55A27;color:#000000;">CTA button</span></td>
+            <td><strong>4.6 : 1</strong></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">#ffffff</span> su <span class="token-name">#33110A</span></td>
+            <td><span class="preview-text" style="background:#33110A;color:#ffffff;">Fund chip abbr</span></td>
+            <td><strong>14.2 : 1</strong></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">#000000</span> su <span class="token-name">#ffffff</span></td>
+            <td><span class="preview-text" style="background:#ffffff;color:#000000;border:1px solid #e8e8e8;">Testo card</span></td>
+            <td><strong>21 : 1</strong></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">#3a3a3a</span> su <span class="token-name">#ffffff</span></td>
+            <td><span class="preview-text" style="background:#ffffff;color:#3a3a3a;border:1px solid #e8e8e8;">Label secondaria</span></td>
+            <td><strong>10.7 : 1</strong></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">#5c5c5c</span> su <span class="token-name">#ffffff</span></td>
+            <td><span class="preview-text" style="background:#ffffff;color:#5c5c5c;border:1px solid #e8e8e8;">Testo supporto</span></td>
+            <td><strong>7.2 : 1</strong></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">#5c5c5c</span> su <span class="token-name">#ebebeb</span></td>
+            <td><span class="preview-text" style="background:#ebebeb;color:#5c5c5c;">Testo su page bg</span></td>
+            <td><strong>5.9 : 1</strong></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">#b0b0b0</span> su <span class="token-name">#ffffff</span></td>
+            <td><span class="preview-text" style="background:#ffffff;color:#b0b0b0;border:1px solid #e8e8e8;">Placeholder</span></td>
+            <td><strong>2.3 : 1</strong></td>
+            <td><span class="badge" style="background:#f0f0f0;color:#888;border-color:#ddd;">— Exempt</span></td>
+            <td><span class="badge" style="background:#f0f0f0;color:#888;border-color:#ddd;">— Exempt</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">#15803d</span> su <span class="token-name">#f0faf4</span></td>
+            <td><span class="preview-text" style="background:#f0faf4;color:#15803d;">Successo</span></td>
+            <td><strong>5.1 : 1</strong></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+            <td><span class="badge pass">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">#8d8d8d</span> su <span class="token-name">#efb19d</span></td>
+            <td><span class="preview-text" style="background:#efb19d;color:#8d8d8d;">Disabled btn</span></td>
+            <td><strong>1.9 : 1</strong></td>
+            <td><span class="badge" style="background:#f0f0f0;color:#888;border-color:#ddd;">— Exempt</span></td>
+            <td><span class="badge" style="background:#f0f0f0;color:#888;border-color:#ddd;">— Exempt</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:#b0b0b0;margin-top:12px;">* Placeholder e disabled sono esplicitamente esenti da WCAG 2.1 §1.4.3: il placeholder è testo decorativo/suggerimento, il disabled è un componente inattivo. Nessuna azione richiesta.</p>
+    </section>
+
+    <!-- ── PAIRINGS ──────────────────────────────────── -->
+    <section class="section" id="pairings" aria-labelledby="pairings-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Guidance</div>
+        <h2 class="section-title" id="pairings-title">Colour pairings</h2>
+        <p class="section-desc">Combinazioni approvate e combinazioni da evitare nel prototipo.</p>
+      </div>
+
+      <div style="margin-bottom:12px;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#22c55e;">Combinazioni corrette</div>
+      <div class="pairing-grid" style="margin-bottom:28px;" role="list" aria-label="Combinazioni di colori corrette">
+        <div class="pairing-card" role="listitem">
+          <div class="pairing-preview" style="background:#F55A27;">
+            <span style="font-size:16px;font-weight:700;color:#000000;">Continua →</span>
+          </div>
+          <div class="pairing-footer">
+            <div class="pairing-label">
+              <strong>Nero su Brand Orange</strong>
+              CTA primario — 4.6:1
+            </div>
+            <span class="badge pass">Pass AA</span>
+          </div>
+        </div>
+        <div class="pairing-card" role="listitem">
+          <div class="pairing-preview" style="background:#33110A;">
+            <span style="font-size:12px;font-weight:900;font-family:'Archivo',sans-serif;color:#F55A27;">GEX</span>
+          </div>
+          <div class="pairing-footer">
+            <div class="pairing-label">
+              <strong>Orange su Brand Dark</strong>
+              Abbr fondo chip — 14.2:1 inverso
+            </div>
+            <span class="badge pass">Pass AA</span>
+          </div>
+        </div>
+        <div class="pairing-card" role="listitem">
+          <div class="pairing-preview" style="background:#f0faf4;">
+            <span style="font-size:14px;font-weight:600;color:#15803d;">✓ Pagamento ricevuto</span>
+          </div>
+          <div class="pairing-footer">
+            <div class="pairing-label">
+              <strong>Testo Positive su bg Positive</strong>
+              Tip-box successo — 5.1:1
+            </div>
+            <span class="badge pass">Pass AA</span>
+          </div>
+        </div>
+        <div class="pairing-card" role="listitem">
+          <div class="pairing-preview" style="background:#FFE4DB;">
+            <span style="font-size:14px;font-weight:600;color:#33110A;">Scopri fondi per te</span>
+          </div>
+          <div class="pairing-footer">
+            <div class="pairing-label">
+              <strong>Brand Dark su Dark Subtle</strong>
+              Ghost button — 8.4:1
+            </div>
+            <span class="badge pass">Pass AA</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#ef4444;">Combinazioni da evitare</div>
+      <div class="pairing-grid" role="list" aria-label="Combinazioni di colori sbagliate">
+        <div class="pairing-card" role="listitem">
+          <div class="pairing-preview" style="background:#F55A27;">
+            <span style="font-size:16px;font-weight:700;color:#ffffff;">Continua →</span>
+          </div>
+          <div class="pairing-footer">
+            <div class="pairing-label">
+              <strong>Bianco su Brand Orange</strong>
+              Contrasto 3.0:1 — non passa AA
+            </div>
+            <span class="badge fail">Fail AA</span>
+          </div>
+        </div>
+        <div class="pairing-card" role="listitem">
+          <div class="pairing-preview" style="background:#FFF0EB;">
+            <span style="font-size:14px;font-weight:500;color:#F55A27;">Testo arancione su subtle</span>
+          </div>
+          <div class="pairing-footer">
+            <div class="pairing-label">
+              <strong>Brand Orange su Subtle Orange</strong>
+              Contrasto 1.8:1 — illeggibile
+            </div>
+            <span class="badge fail">Fail AA</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── USAGE EXAMPLES ────────────────────────────── -->
+    <section class="section" id="usage" aria-labelledby="usage-title">
+      <div class="section-header">
+        <div class="section-eyebrow">In context</div>
+        <h2 class="section-title" id="usage-title">Usage examples</h2>
+        <p class="section-desc">Come i token si traducono nei componenti reali del prototipo.</p>
+      </div>
+      <div class="usage-grid" role="list">
+
+        <div class="usage-row" role="listitem">
+          <div class="usage-preview">
+            <button class="demo-cta" aria-label="Esempio CTA primario">Continua</button>
+          </div>
+          <div class="usage-info">
+            <div class="usage-title">CTA primario</div>
+            <div class="usage-desc">Background <code>--brand-primary</code> · testo <code>--content-primary</code> (#000). Mai testo bianco sull'arancione.</div>
+          </div>
+        </div>
+
+        <div class="usage-row" role="listitem">
+          <div class="usage-preview">
+            <div class="demo-toast" role="status" aria-live="polite">
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              IBAN copiato
+            </div>
+          </div>
+          <div class="usage-info">
+            <div class="usage-title">Toast notification</div>
+            <div class="usage-desc">Background <code>--content-primary</code> · testo <code>--content-inverse</code>. Font weight 400, testo allineato a sinistra.</div>
+          </div>
+        </div>
+
+        <div class="usage-row" role="listitem">
+          <div class="usage-preview">
+            <div class="demo-copy-row">
+              <span class="mono">IT60 X054 2811</span>
+              <button class="demo-copy-btn" aria-label="Copia IBAN">Copia</button>
+            </div>
+          </div>
+          <div class="usage-info">
+            <div class="usage-title">Copy row</div>
+            <div class="usage-desc">Valore mono <code>--brand-primary</code> (causale) o <code>--content-primary</code>. Bottone Copia: <code>--brand-dark-subtle</code> bg + <code>--brand-dark</code> testo.</div>
+          </div>
+        </div>
+
+        <div class="usage-row" role="listitem">
+          <div class="usage-preview">
+            <div class="demo-input focused">
+              <div class="label">Email</div>
+              <div class="value">filippo@gimme5.it</div>
+            </div>
+          </div>
+          <div class="usage-info">
+            <div class="usage-title">Input field — focus</div>
+            <div class="usage-desc">Background <code>--bg-input</code> · bordo attivo <code>--border-brand</code> · label <code>--content-tertiary</code> · valore <code>--content-primary</code>.</div>
+          </div>
+        </div>
+
+        <div class="usage-row" role="listitem">
+          <div class="usage-preview">
+            <div style="background:#fff8e6;border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;">
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <div style="font-size:12px;line-height:1.5;color:#92600a;">Verifica in attesa: il bonifico non è ancora arrivato.</div>
+            </div>
+          </div>
+          <div class="usage-info">
+            <div class="usage-title">Warning tip-box</div>
+            <div class="usage-desc">Background <code>--warning-bg</code> · testo <code>--warning-text</code> · icona <code>--warning-icon</code>. Attualmente non presente nel prototipo.</div>
+          </div>
+        </div>
+
+        <div class="usage-row" role="listitem">
+          <div class="usage-preview">
+            <div style="background:white;border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;border:1px solid #f0f0f0;">
+              <div style="width:40px;height:40px;background:#33110A;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-size:11px;font-weight:900;color:#F55A27;flex-shrink:0;" aria-hidden="true">GEX</div>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:#000;font-family:'Archivo',sans-serif;">Global Extra</div>
+                <div style="font-size:13px;color:#5c5c5c;">€50,00</div>
+              </div>
+            </div>
+          </div>
+          <div class="usage-info">
+            <div class="usage-title">Fund chip</div>
+            <div class="usage-desc">Container <code>--brand-dark</code> · abbr <code>--brand-primary</code>. Nome fondo <code>--content-primary</code> · importo <code>--content-tertiary</code>.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── TYPOGRAPHY ───────────────────────────────── -->
+    <section class="section" id="typography" aria-labelledby="type-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Foundations</div>
+        <h2 class="section-title" id="type-title">Typography</h2>
+        <p class="section-desc">Due famiglie: <strong>Archivo</strong> per i titoli (impatto, weight 800/600), <strong>Inter</strong> per il corpo (leggibilità, weight 400–600). I tag h1–h3 sono stilizzati globalmente in <code style="font-family:monospace;font-size:12px;background:#f5f5f5;padding:1px 5px;border-radius:4px;">index.css</code>.</p>
+      </div>
+
+      <!-- Font families -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px;">
+        <div style="border:1px solid #f0f0f0;border-radius:14px;padding:24px 28px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b0b0b0;margin-bottom:16px;">Heading — Archivo</div>
+          <div style="font-family:'Archivo',sans-serif;font-size:36px;font-weight:800;line-height:1.1;letter-spacing:-0.02em;color:#000;">Gimme5</div>
+          <div style="font-family:'Archivo',sans-serif;font-size:36px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#000;">Gimme5</div>
+          <div style="font-family:'Archivo',sans-serif;font-size:36px;font-weight:600;line-height:1.1;letter-spacing:-0.02em;color:#000;">Gimme5</div>
+          <div style="margin-top:16px;font-size:12px;font-family:monospace;color:#b0b0b0;">800 · 700 · 600</div>
+        </div>
+        <div style="border:1px solid #f0f0f0;border-radius:14px;padding:24px 28px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b0b0b0;margin-bottom:16px;">Body — Inter</div>
+          <div style="font-family:'Inter',sans-serif;font-size:28px;font-weight:600;line-height:1.3;color:#000;">Il tuo futuro</div>
+          <div style="font-family:'Inter',sans-serif;font-size:20px;font-weight:500;line-height:1.4;color:#3a3a3a;">inizia oggi.</div>
+          <div style="font-family:'Inter',sans-serif;font-size:16px;font-weight:400;line-height:1.6;color:#5c5c5c;margin-top:4px;">Risparmia automaticamente ogni giorno.</div>
+          <div style="margin-top:16px;font-size:12px;font-family:monospace;color:#b0b0b0;">600 · 500 · 400</div>
+        </div>
+      </div>
+
+      <!-- Type scale -->
+      <div style="border:1px solid #f0f0f0;border-radius:14px;overflow:hidden;" role="list" aria-label="Scala tipografica">
+        <div style="background:#fafafa;padding:10px 20px;border-bottom:1px solid #f0f0f0;display:grid;grid-template-columns:140px 1fr 160px;gap:16px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#b0b0b0;">Token / uso</span>
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#b0b0b0;">Anteprima</span>
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#b0b0b0;">Specifiche</span>
+        </div>
+        <!-- Display -->
+        <div style="padding:16px 20px;border-bottom:1px solid #f8f8f8;display:grid;grid-template-columns:140px 1fr 160px;gap:16px;align-items:center;" role="listitem">
+          <div style="font-size:12px;font-family:monospace;color:#5c5c5c;">display<br><span style="color:#b0b0b0;">h1 screen</span></div>
+          <div style="font-family:'Archivo',sans-serif;font-size:32px;font-weight:800;line-height:1.15;letter-spacing:-0.5px;color:#000;">Salva il futuro</div>
+          <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">32px · 800 · Archivo<br>lh 1.15 · ls -0.5px</div>
+        </div>
+        <!-- h2 -->
+        <div style="padding:16px 20px;border-bottom:1px solid #f8f8f8;display:grid;grid-template-columns:140px 1fr 160px;gap:16px;align-items:center;" role="listitem">
+          <div style="font-size:12px;font-family:monospace;color:#5c5c5c;">h2<br><span style="color:#b0b0b0;">section title</span></div>
+          <div style="font-family:'Archivo',sans-serif;font-size:24px;font-weight:600;line-height:1.15;color:#000;">Il tuo piano</div>
+          <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">24px · 600 · Archivo</div>
+        </div>
+        <!-- h3 -->
+        <div style="padding:16px 20px;border-bottom:1px solid #f8f8f8;display:grid;grid-template-columns:140px 1fr 160px;gap:16px;align-items:center;" role="listitem">
+          <div style="font-size:12px;font-family:monospace;color:#5c5c5c;">h3<br><span style="color:#b0b0b0;">card title</span></div>
+          <div style="font-family:'Archivo',sans-serif;font-size:20px;font-weight:600;line-height:1.2;color:#000;">Scegli il fondo</div>
+          <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">20px · 600 · Archivo</div>
+        </div>
+        <!-- body large -->
+        <div style="padding:16px 20px;border-bottom:1px solid #f8f8f8;display:grid;grid-template-columns:140px 1fr 160px;gap:16px;align-items:center;" role="listitem">
+          <div style="font-size:12px;font-family:monospace;color:#5c5c5c;">.sub / body-lg<br><span style="color:#b0b0b0;">descrizioni</span></div>
+          <div style="font-family:'Inter',sans-serif;font-size:16px;font-weight:400;line-height:1.5;color:#5c5c5c;">Risparmia automaticamente ogni settimana.</div>
+          <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">16px · 400 · Inter<br>lh 1.5</div>
+        </div>
+        <!-- label / body -->
+        <div style="padding:16px 20px;border-bottom:1px solid #f8f8f8;display:grid;grid-template-columns:140px 1fr 160px;gap:16px;align-items:center;" role="listitem">
+          <div style="font-size:12px;font-family:monospace;color:#5c5c5c;">body / label<br><span style="color:#b0b0b0;">più usato</span></div>
+          <div style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#3a3a3a;">Fondo Global Extra · €50,00 / mese</div>
+          <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">14px · 500 · Inter</div>
+        </div>
+        <!-- caption -->
+        <div style="padding:16px 20px;border-bottom:1px solid #f8f8f8;display:grid;grid-template-columns:140px 1fr 160px;gap:16px;align-items:center;" role="listitem">
+          <div style="font-size:12px;font-family:monospace;color:#5c5c5c;">caption<br><span style="color:#b0b0b0;">più usato (93×)</span></div>
+          <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:400;line-height:1.5;color:#5c5c5c;">Accredito in 1–3 giorni lavorativi</div>
+          <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">12px · 400 · Inter</div>
+        </div>
+        <!-- overline -->
+        <div style="padding:16px 20px;display:grid;grid-template-columns:140px 1fr 160px;gap:16px;align-items:center;" role="listitem">
+          <div style="font-size:12px;font-family:monospace;color:#5c5c5c;">overline<br><span style="color:#b0b0b0;">sezioni, eyebrow</span></div>
+          <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#b0b0b0;">Foundations</div>
+          <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">11px · 700 · Inter<br>ls 0.09em · uppercase</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SPACING & RADIUS ───────────────────────────── -->
+    <section class="section" id="spacing" aria-labelledby="spacing-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Foundations</div>
+        <h2 class="section-title" id="spacing-title">Spacing & Radius</h2>
+        <p class="section-desc">Il prototipo usa la scala Tailwind (1 unit = 4px). I valori reali estratti dal codice — i più frequenti sono evidenziati.</p>
+      </div>
+
+      <!-- Spacing scale -->
+      <div style="margin-bottom:32px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b0b0b0;margin-bottom:16px;">Spacing scale</div>
+        <div style="display:flex;flex-direction:column;gap:8px;" role="list" aria-label="Scala di spaziatura">
+
+          <div style="display:flex;align-items:center;gap:16px;" role="listitem">
+            <div style="width:80px;font-size:12px;font-family:monospace;color:#5c5c5c;flex-shrink:0;">4px · 1</div>
+            <div style="height:20px;background:#F55A27;border-radius:4px;width:4px;" aria-hidden="true"></div>
+            <div style="font-size:12px;color:#b0b0b0;">gap-1 · micro separatori, dot indicator</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;" role="listitem">
+            <div style="width:80px;font-size:12px;font-family:monospace;color:#5c5c5c;flex-shrink:0;">8px · 2</div>
+            <div style="height:20px;background:#F55A27;border-radius:4px;width:8px;" aria-hidden="true"></div>
+            <div style="font-size:12px;color:#b0b0b0;">gap-2 · elementi ravvicinati, chip interni</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;" role="listitem">
+            <div style="width:80px;font-size:12px;font-family:monospace;color:#5c5c5c;flex-shrink:0;font-weight:700;">12px · 3 ★</div>
+            <div style="height:20px;background:#F55A27;border-radius:4px;width:12px;" aria-hidden="true"></div>
+            <div style="font-size:12px;color:#3a3a3a;font-weight:500;">gap-3 · gap standard tra elementi (55× nel codice)</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;" role="listitem">
+            <div style="width:80px;font-size:12px;font-family:monospace;color:#5c5c5c;flex-shrink:0;">16px · 4</div>
+            <div style="height:20px;background:#F55A27;border-radius:4px;width:16px;" aria-hidden="true"></div>
+            <div style="font-size:12px;color:#b0b0b0;">gap-4 · padding interno card, gap sezioni</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;" role="listitem">
+            <div style="width:80px;font-size:12px;font-family:monospace;color:#5c5c5c;flex-shrink:0;font-weight:700;">20px · 5 ★</div>
+            <div style="height:20px;background:#F55A27;border-radius:4px;width:20px;" aria-hidden="true"></div>
+            <div style="font-size:12px;color:#3a3a3a;font-weight:500;">px-5 · padding laterale pagina standard (87× nel codice)</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;" role="listitem">
+            <div style="width:80px;font-size:12px;font-family:monospace;color:#5c5c5c;flex-shrink:0;font-weight:700;">16px · 4 ★</div>
+            <div style="height:20px;background:#E04B1C;border-radius:4px;width:16px;" aria-hidden="true"></div>
+            <div style="font-size:12px;color:#3a3a3a;font-weight:500;">px-4 · padding interno card e componenti (84× nel codice)</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;" role="listitem">
+            <div style="width:80px;font-size:12px;font-family:monospace;color:#5c5c5c;flex-shrink:0;">24px · 6</div>
+            <div style="height:20px;background:#F55A27;border-radius:4px;width:24px;" aria-hidden="true"></div>
+            <div style="font-size:12px;color:#b0b0b0;">gap-6 · gap tra sezioni distinte</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;" role="listitem">
+            <div style="width:80px;font-size:12px;font-family:monospace;color:#5c5c5c;flex-shrink:0;">100px</div>
+            <div style="height:20px;background:#F55A27;border-radius:4px;width:100px;" aria-hidden="true"></div>
+            <div style="font-size:12px;color:#b0b0b0;">pb-[100px] · scroll padding per CTA floating</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout grid -->
+      <div style="margin-bottom:32px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b0b0b0;margin-bottom:16px;">Layout — struttura schermata mobile</div>
+        <div style="border:1px solid #f0f0f0;border-radius:14px;overflow:hidden;background:#ebebeb;padding:16px;display:flex;flex-direction:column;gap:8px;max-width:320px;" role="img" aria-label="Schema layout mobile con navbar, contenuto e CTA">
+          <div style="background:#fff;border-radius:10px;padding:12px 16px;font-size:12px;font-weight:600;color:#3a3a3a;text-align:center;">NavBar · flex-shrink-0</div>
+          <div style="background:#fff;border-radius:10px;padding:20px 16px;font-size:12px;color:#5c5c5c;text-align:center;flex:1;min-height:120px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
+            <span style="font-weight:600;color:#3a3a3a;">flex-1 overflow-y-auto</span>
+            <span>px-5 (20px) laterale</span>
+            <span>pb-[100px] per CTA</span>
+          </div>
+          <div style="background:#F55A27;border-radius:10px;padding:12px 16px;font-size:12px;font-weight:600;color:#000;text-align:center;">BottomCta floating · absolute bottom-0</div>
+        </div>
+      </div>
+
+      <!-- Border radius -->
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b0b0b0;margin-bottom:16px;">Border radius</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;" role="list" aria-label="Valori border radius">
+          <div style="border:1px solid #f0f0f0;border-radius:14px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px;" role="listitem">
+            <div style="width:48px;height:48px;background:#F55A27;border-radius:4px;" aria-hidden="true"></div>
+            <div style="text-align:center;">
+              <div style="font-size:13px;font-weight:600;color:#000;">4px</div>
+              <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">rounded-[4px]</div>
+              <div style="font-size:11px;color:#5c5c5c;margin-top:2px;">badge, tag, chip tick</div>
+            </div>
+          </div>
+          <div style="border:1px solid #f0f0f0;border-radius:14px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px;" role="listitem">
+            <div style="width:48px;height:48px;background:#F55A27;border-radius:12px;" aria-hidden="true"></div>
+            <div style="text-align:center;">
+              <div style="font-size:13px;font-weight:600;color:#000;">12px</div>
+              <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">rounded-[12px]</div>
+              <div style="font-size:11px;color:#5c5c5c;margin-top:2px;">input, chip, elementi medi</div>
+            </div>
+          </div>
+          <div style="border:1px solid #f0f0f0;border-radius:14px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px;" role="listitem">
+            <div style="width:48px;height:48px;background:#F55A27;border-radius:16px;" aria-hidden="true"></div>
+            <div style="text-align:center;">
+              <div style="font-size:13px;font-weight:600;color:#000;">16px ★</div>
+              <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">rounded-[16px]</div>
+              <div style="font-size:11px;color:#5c5c5c;margin-top:2px;">card principale (60× nel codice)</div>
+            </div>
+          </div>
+          <div style="border:1px solid #f0f0f0;border-radius:14px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px;" role="listitem">
+            <div style="width:48px;height:48px;background:#F55A27;border-radius:24px;" aria-hidden="true"></div>
+            <div style="text-align:center;">
+              <div style="font-size:13px;font-weight:600;color:#000;">24px</div>
+              <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">rounded-[24px]</div>
+              <div style="font-size:11px;color:#5c5c5c;margin-top:2px;">hero card, icon box grande</div>
+            </div>
+          </div>
+          <div style="border:1px solid #f0f0f0;border-radius:14px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px;" role="listitem">
+            <div style="width:48px;height:48px;background:#F55A27;border-radius:999px;" aria-hidden="true"></div>
+            <div style="text-align:center;">
+              <div style="font-size:13px;font-weight:600;color:#000;">999px</div>
+              <div style="font-size:11px;font-family:monospace;color:#b0b0b0;">rounded-full</div>
+              <div style="font-size:11px;color:#5c5c5c;margin-top:2px;">bottoni CTA, pill, badge</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ICONOGRAPHY ────────────────────────────────── -->
+    <section class="section" id="iconography" aria-labelledby="icon-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Foundations</div>
+        <h2 class="section-title" id="icon-title">Iconography</h2>
+        <p class="section-desc">Tutte le icone sono SVG inline outline, stile Lucide/Heroicons. Nessuna libreria importata — ogni icona è disegnata con <code style="font-family:monospace;font-size:12px;background:#f5f5f5;padding:1px 5px;border-radius:4px;">strokeLinecap="round" strokeLinejoin="round"</code>.</p>
+      </div>
+
+      <!-- Sizes -->
+      <div style="margin-bottom:32px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b0b0b0;margin-bottom:16px;">Dimensioni standard</div>
+        <div style="display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap;padding:24px;border:1px solid #f0f0f0;border-radius:14px;background:#fafafa;">
+          <!-- 48px hero -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;" role="listitem">
+            <svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <div style="text-align:center;"><div style="font-size:12px;font-weight:600;color:#000;">48px</div><div style="font-size:11px;font-family:monospace;color:#b0b0b0;">sw 1.5 · hero icon</div></div>
+          </div>
+          <!-- 24px default ★ -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;" role="listitem">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F55A27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <div style="text-align:center;"><div style="font-size:12px;font-weight:700;color:#F55A27;">24px ★</div><div style="font-size:11px;font-family:monospace;color:#b0b0b0;">sw 2 · default standard</div></div>
+          </div>
+          <!-- 16px -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;" role="listitem">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <div style="text-align:center;"><div style="font-size:12px;font-weight:600;color:#000;">16px</div><div style="font-size:11px;font-family:monospace;color:#b0b0b0;">sw 2 · (25×)</div></div>
+          </div>
+          <!-- 14px -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;" role="listitem">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <div style="text-align:center;"><div style="font-size:12px;font-weight:600;color:#000;">14px</div><div style="font-size:11px;font-family:monospace;color:#b0b0b0;">sw 2 · inline (29×)</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stroke weights -->
+      <div style="margin-bottom:32px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b0b0b0;margin-bottom:16px;">Stroke weights</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <div style="border:1px solid #f0f0f0;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;background:#fafafa;">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div><div style="font-size:13px;font-weight:600;color:#000;">1.5</div><div style="font-size:11px;font-family:monospace;color:#b0b0b0;">hero, illustrativo</div></div>
+          </div>
+          <div style="border:1px solid #f0f0f0;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;background:#fafafa;">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div><div style="font-size:13px;font-weight:600;color:#000;">1.8</div><div style="font-size:11px;font-family:monospace;color:#b0b0b0;">medium (31×)</div></div>
+          </div>
+          <div style="border:2px solid #F55A27;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;background:#FFF0EB;">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F55A27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div><div style="font-size:13px;font-weight:700;color:#F55A27;">2 ★</div><div style="font-size:11px;font-family:monospace;color:#C43F17;">default (59×)</div></div>
+          </div>
+          <div style="border:1px solid #f0f0f0;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;background:#fafafa;">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div><div style="font-size:13px;font-weight:600;color:#000;">2.5</div><div style="font-size:11px;font-family:monospace;color:#b0b0b0;">bold, success check (24×)</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Icon colors -->
+      <div style="margin-bottom:32px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b0b0b0;margin-bottom:16px;">Colori icona — estratti dal codice</div>
+        <div style="border:1px solid #f0f0f0;border-radius:14px;overflow:hidden;">
+          <div style="background:#fafafa;padding:10px 20px;border-bottom:1px solid #f0f0f0;display:grid;grid-template-columns:60px 120px 1fr 80px;">
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#b0b0b0;">Icona</span>
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#b0b0b0;">Colore</span>
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#b0b0b0;">Uso</span>
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#b0b0b0;">Freq.</span>
+          </div>
+          <div style="padding:14px 20px;border-bottom:1px solid #f8f8f8;display:grid;grid-template-columns:60px 120px 1fr 80px;align-items:center;">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5c5c5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span style="font-family:monospace;font-size:12px;color:#5c5c5c;">#5c5c5c</span>
+            <span style="font-size:13px;color:#3a3a3a;">Info inline, icone di supporto</span>
+            <span style="font-size:12px;font-weight:600;color:#5c5c5c;">23×</span>
+          </div>
+          <div style="padding:14px 20px;border-bottom:1px solid #f8f8f8;display:grid;grid-template-columns:60px 120px 1fr 80px;align-items:center;">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f55a27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            <span style="font-family:monospace;font-size:12px;color:#f55a27;">#f55a27</span>
+            <span style="font-size:13px;color:#3a3a3a;">CTA, frecce, azioni primarie</span>
+            <span style="font-size:12px;font-weight:600;color:#5c5c5c;">18×</span>
+          </div>
+          <div style="padding:14px 20px;border-bottom:1px solid #f8f8f8;display:grid;grid-template-columns:60px 120px 1fr 80px;align-items:center;">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+            <span style="font-family:monospace;font-size:12px;color:#3a3a3a;">#3a3a3a</span>
+            <span style="font-size:13px;color:#3a3a3a;">Icone di navigazione, azioni secondarie</span>
+            <span style="font-size:12px;font-weight:600;color:#5c5c5c;">11×</span>
+          </div>
+          <div style="padding:14px 20px;border-bottom:1px solid #f8f8f8;display:grid;grid-template-columns:60px 120px 1fr 80px;align-items:center;">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span style="font-family:monospace;font-size:12px;color:#1a1a1a;">#1a1a1a</span>
+            <span style="font-size:13px;color:#3a3a3a;">Icone dark su sfondo chiaro</span>
+            <span style="font-size:12px;font-weight:600;color:#5c5c5c;">9×</span>
+          </div>
+          <div style="padding:14px 20px;display:grid;grid-template-columns:60px 120px 1fr 80px;align-items:center;">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-family:monospace;font-size:12px;color:#22c55e;">#22c55e</span>
+            <span style="font-size:13px;color:#3a3a3a;">Successo, conferma, checkmark</span>
+            <span style="font-size:12px;font-weight:600;color:#5c5c5c;">2×</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Icon in context examples -->
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b0b0b0;margin-bottom:16px;">Icone in contesto</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+
+          <div style="border:1px solid #f0f0f0;border-radius:12px;padding:16px;background:#fafafa;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#b0b0b0;margin-bottom:12px;">Icon box</div>
+            <div style="width:44px;height:44px;background:#fff;border-radius:12px;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div style="margin-top:8px;font-size:11px;font-family:monospace;color:#b0b0b0;">44px · bg white · border #e8e8e8<br>radius 12px · stroke 1.8</div>
+          </div>
+
+          <div style="border:1px solid #f0f0f0;border-radius:12px;padding:16px;background:#fafafa;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#b0b0b0;margin-bottom:12px;">Icon pill — success</div>
+            <div style="width:36px;height:36px;background:#f0faf4;border-radius:50%;display:flex;align-items:center;justify-content:center;" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div style="margin-top:8px;font-size:11px;font-family:monospace;color:#b0b0b0;">36px · bg positive-bg<br>radius full · stroke 2.5</div>
+          </div>
+
+          <div style="border:1px solid #f0f0f0;border-radius:12px;padding:16px;background:#fafafa;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#b0b0b0;margin-bottom:12px;">Chevron nav</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:10px;border:1px solid #e8e8e8;padding:10px 12px;" aria-label="Esempio navigazione con chevron">
+              <span style="font-size:13px;color:#3a3a3a;font-weight:500;">Prossimo</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5c5c5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+            <div style="margin-top:8px;font-size:11px;font-family:monospace;color:#b0b0b0;">20px · #5c5c5c · stroke 2</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TOKEN REFERENCE ───────────────────────────── -->
+    <section class="section" id="tokens" aria-labelledby="tokens-title">
+      <div class="section-header">
+        <div class="section-eyebrow">Reference</div>
+        <h2 class="section-title" id="tokens-title">Token reference</h2>
+        <p class="section-desc">Tabella completa dei 36 token CSS con valore, campione e categoria.</p>
+      </div>
+      <div style="border:1px solid #f0f0f0;border-radius:14px;overflow:hidden;">
+        <table class="token-table" aria-label="Riferimento token colore Gimme5">
+          <thead>
+            <tr>
+              <th scope="col">Token</th>
+              <th scope="col">Valore</th>
+              <th scope="col">Colore</th>
+              <th scope="col">Categoria</th>
+            </tr>
+          </thead>
+          <tbody id="token-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  /* ── COPY HEX ─────────────────────────────────────── */
+  function copy(val, btn) {
+    navigator.clipboard?.writeText(val).catch(() => {})
+    const orig = btn.textContent
+    btn.textContent = 'Copiato!'
+    setTimeout(() => btn.textContent = orig, 1500)
+  }
+
+  /* ── ACTIVE SIDEBAR LINK ─────────────────────────── */
+  const sections = document.querySelectorAll('section[id]')
+  const navLinks = document.querySelectorAll('.sidebar-nav a')
+  const ids = ['brand','states','content','backgrounds','borders','sentiment','accessibility','pairings','usage','tokens']
+
+  window.addEventListener('scroll', () => {
+    let current = ''
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id
+    })
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current)
+    })
+  }, { passive: true })
+
+  /* ── TOKEN TABLE ─────────────────────────────────── */
+  const tokens = [
+    { name:'--brand-primary',          val:'#F55A27', cat:'Brand' },
+    { name:'--brand-primary-hover',    val:'#E04B1C', cat:'Brand' },
+    { name:'--brand-primary-pressed',  val:'#C43F17', cat:'Brand' },
+    { name:'--brand-primary-subtle',   val:'#FFF0EB', cat:'Brand' },
+    { name:'--brand-primary-disabled', val:'#efb19d', cat:'Brand' },
+    { name:'--brand-dark',             val:'#33110A', cat:'Brand' },
+    { name:'--brand-dark-hover',       val:'#4A1A0F', cat:'Brand' },
+    { name:'--brand-dark-subtle',      val:'#FFE4DB', cat:'Brand' },
+    { name:'--content-primary',        val:'#000000', cat:'Content' },
+    { name:'--content-secondary',      val:'#3a3a3a', cat:'Content' },
+    { name:'--content-tertiary',       val:'#5c5c5c', cat:'Content' },
+    { name:'--content-disabled',       val:'#b0b0b0', cat:'Content' },
+    { name:'--content-inverse',        val:'#ffffff', cat:'Content' },
+    { name:'--content-link',           val:'#F55A27', cat:'Content' },
+    { name:'--content-on-brand',       val:'#000000', cat:'Content' },
+    { name:'--bg-page',                val:'#ebebeb', cat:'Background' },
+    { name:'--bg-surface',             val:'#ffffff', cat:'Background' },
+    { name:'--bg-subtle',              val:'#f5f5f5', cat:'Background' },
+    { name:'--bg-input',               val:'#f5f5f5', cat:'Background' },
+    { name:'--bg-overlay',             val:'rgba(0,0,0,.40)', cat:'Background' },
+    { name:'--border-default',         val:'#e8e8e8', cat:'Border' },
+    { name:'--border-strong',          val:'#d0d0d0', cat:'Border' },
+    { name:'--border-brand',           val:'#F55A27', cat:'Border' },
+    { name:'--border-focus',           val:'#000000', cat:'Border' },
+    { name:'--positive-bg',            val:'#f0faf4', cat:'Sentiment' },
+    { name:'--positive-text',          val:'#15803d', cat:'Sentiment' },
+    { name:'--positive-icon',          val:'#22c55e', cat:'Sentiment' },
+    { name:'--warning-bg',             val:'#fff8e6', cat:'Sentiment' },
+    { name:'--warning-text',           val:'#92600a', cat:'Sentiment' },
+    { name:'--warning-icon',           val:'#f59e0b', cat:'Sentiment' },
+    { name:'--negative-bg',            val:'#fff1f0', cat:'Sentiment' },
+    { name:'--negative-text',          val:'#b91c1c', cat:'Sentiment' },
+    { name:'--negative-icon',          val:'#ef4444', cat:'Sentiment' },
+    { name:'--info-bg',                val:'#eff6ff', cat:'Sentiment' },
+    { name:'--info-text',              val:'#1d4ed8', cat:'Sentiment' },
+    { name:'--info-icon',              val:'#3b82f6', cat:'Sentiment' },
+  ]
+  const catStyle = {
+    Brand:      'background:#FFF0EB;color:#C43F17;',
+    Content:    'background:#f5f5f5;color:#3a3a3a;',
+    Background: 'background:#e8f4ff;color:#1d4ed8;',
+    Border:     'background:#f0f0f0;color:#5c5c5c;',
+    Sentiment:  'background:#f0faf4;color:#15803d;',
+  }
+  const tbody = document.getElementById('token-tbody')
+  tokens.forEach(t => {
+    const isRgba = t.val.startsWith('rgba')
+    let dotHtml
+    if (isRgba) {
+      dotHtml = `<span class="color-dot" aria-hidden="true" style="background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:8px 8px;background-position:0 0,0 4px,4px -4px,-4px 0;"><span style="position:absolute;inset:0;background:${t.val};display:block;"></span></span>`
+    } else {
+      const border = (t.val === '#ffffff') ? 'border:1px solid #e8e8e8;' : ''
+      dotHtml = `<span class="color-dot" aria-hidden="true" style="background:${t.val};${border}"></span>`
+    }
+    tbody.insertAdjacentHTML('beforeend', `
+      <tr>
+        <td><span class="token-name">${t.name}</span></td>
+        <td><span class="token-val">${t.val}</span></td>
+        <td>${dotHtml}</td>
+        <td><span class="cat-badge" style="${catStyle[t.cat]}">${t.cat}</span></td>
+      </tr>`)
+  })
+
+  /* ── UPDATE SIDEBAR FOR ALL SECTIONS ─────────────── */
+  const allSections = document.querySelectorAll('section[id]')
+  const allLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]')
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        allLinks.forEach(a => a.classList.remove('active'))
+        const active = document.querySelector(`.sidebar-nav a[href="#${e.target.id}"]`)
+        if (active) active.classList.add('active')
+      }
+    })
+  }, { threshold: 0.3 })
+  allSections.forEach(s => observer.observe(s))
+</script>
+</body>
+</html>
